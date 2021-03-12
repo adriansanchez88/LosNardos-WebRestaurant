@@ -46,4 +46,23 @@ class HomePageView(TemplateView):
             'categorias': categorias_menu,
             'categorias_cuatro': categorias_cuatro,
             'platos': platos
-            })
+    })
+
+class MenuPageView(TemplateView):
+    template_name = "core/menu_completo.html"
+
+    def get(self, request, *args, **kwargs):
+
+        listado = list(Categoria.objects.all())
+        categorias_menu = []        
+        for elem in listado:
+            if elem.activo:
+                categorias_menu.append(elem)
+
+        platos = Plato.objects.all()
+
+        return render(request, self.template_name, {
+            
+            'categorias': categorias_menu,            
+            'platos': platos
+    })

@@ -39,7 +39,7 @@
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}">
 
-	<link rel="stylesheet" href="{% static 'core/css/style_new1.css' %}">
+	<link rel="stylesheet" href="{% static 'core/css/style_new2.css' %}">
 
 
 	<!-- Modernizr JS -->
@@ -90,8 +90,7 @@
 					<div class="fh5co-menu-2">
 						<a href="#" data-nav-section="menu">Menú</a>
 						<a href="#" data-nav-section="events">Eventos</a>
-						<!--<a href="#" data-nav-section="reservation">Reservaciones</a>-->
-						<a href="#" data-nav-section="reservation">Servicio a Domicilio</a>
+						<a href="#" data-nav-section="reservation">Reservaciones</a>						
 					</div>
 				</div>
 				
@@ -193,10 +192,10 @@
 				</div>
 				<div class="row row-padded">
 					{% for categoria in categorias %}
-						<div class="col-md-10">
+						<div class="col-md-8">
 							<div class="fh5co-food-menu to-animate-2">							
 								<!--<h2 style="background: url({{categoria.iconoNegro.url}}) no-repeat center center; position: relative;padding-left: 80px;  height: 64px;">{{categoria.tituloES}}</h2>-->
-								<h3 style="background: url({{categoria.iconoNegro.url}}) no-repeat center center; height: 64px;"><u>{{categoria.tituloES}}</u></h3>
+								<h3 style="background: url({{categoria.iconoNegro.url}}) no-repeat center right; height: 64px;"><u>{{categoria.tituloES}}</u></h3>
 								<ul>
 									{% for plato in platos %}
 										{% ifequal plato.categoria.tituloES categoria.tituloES %}
@@ -208,7 +207,7 @@
 													</div>
 												</div>
 												<div class="fh5co-food-pricing">
-													$ {{plato.precio}}
+													${{plato.precio}}
 												</div>
 											</li>
 										{% endifequal %}
@@ -218,11 +217,11 @@
 						</div>
 					{% endfor %}
 				</div>
-				<!--<div class="row">
+				<div class="row">
 					<div class="col-md-4 col-md-offset-4 text-center to-animate-2">
-						<p><a href="#" class="btn btn-primary btn-outline">Menú Completo</a></p>
+						<p><a href="{% url 'menu' %}" class="btn btn-primary btn-outline">Menú Completo</a></p>
 					</div>
-				</div>-->
+				</div>
 			</div>
 		</div>
 		<!-- FIN DE LA SECCION MENU -->
@@ -273,11 +272,8 @@
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
-						<!--<h2 class="heading to-animate">Reserve su Mesa</h2>
+						<h2 class="heading to-animate">Reserve su Mesa</h2>
 						<p class="sub-heading to-animate">Puede contactarnos para reservar su mesa llamando al <strong>Teléfono de Contacto</strong> o llenando el <strong>Formulario de Reservación</strong> y esperando que demos respuesta a su solicitud.</p>
-						-->
-						<h2 class="heading to-animate">Servicio a Domicilio</h2>
-						<p class="sub-heading to-animate">Puede llamarnos para ordenar su pedido al <a href="tel:+5378632985">teléfono de contacto</a> o llegándose a la dirección que se muestra en la información de contacto y haciendo su pedido personalmente. (Por medidas de seguridad por el COVID-19 solo estamos funcionando en modalidad de comida para llevar, disculpe las molestias que pueda ocasionar).</p>						
 					</div>
 				</div>
 				<div class="row">
@@ -290,11 +286,10 @@
 								Prado 563 e/ Teniente Rey y Dragones<br>La Habana, Cuba
 							</li>							
 							<li><a href="tel:+5378632985"><i class="icon-phone"></i> +537 863 2985</a></li>
-							<!--<li><i class="icon-envelope"></i>losnardos@gmail.com</li>-->
-							<!-- <li><i class="icon-globe"></i> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></li> -->
+							<li><a href="mailto:losnardoscuba@gmail.com"><i class="icon-envelope"></i>losnardoscuba@gmail.com</a></li>							
 						</ul>
 					</div>
-					<!--<div class="col-md-6 to-animate-2">
+					<div class="col-md-6 to-animate-2">
 						<h3>Formulario de Reservación</h3>
 						<div class="form-group ">
 							<label for="name" class="sr-only">Nombre</label>
@@ -303,17 +298,8 @@
 						<div class="form-group ">
 							<label for="email" class="sr-only">Email</label>
 							<input id="email" class="form-control" placeholder="Email" type="email">
-						</div>-->
-						<!--<div class="form-group">
-							<label for="occation" class="sr-only">Occation</label>
-							<select class="form-control" id="occation">
-								<option>Select an Occation</option>
-							  <option>Wedding Ceremony</option>
-							  <option>Birthday</option>
-							  <option>Others</option>
-							</select>
-						</div>-->
-						<!--<div class="form-group ">
+						</div>						
+						<div class="form-group ">
 							<label for="date" class="sr-only">Fecha y Hora</label>
 							<input id="date" class="form-control" placeholder="Fecha y Hora" type="text">
 						</div>
@@ -327,7 +313,7 @@
 						<div class="form-group ">
 							<input class="btn btn-primary btn-outline" value="Enviar Mensaje" type="submit">
 						</div>
-					</div>-->
+					</div>
 				</div>
 			</div>
 		</div>

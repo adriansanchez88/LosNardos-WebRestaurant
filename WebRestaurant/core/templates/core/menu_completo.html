@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Los Nardos | WebRestaurant</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FREEHTML5.CO" />  
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+	{% load static %}
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="{% static 'core/webrestaurant.png' %}">
+
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'core/css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'core/css/icomoon.css' %}">
+	<!-- Simple Line Icons -->
+	<link rel="stylesheet" href="{% static 'core/css/simple-line-icons.css' %}">
+	<!-- Datetimepicker -->
+	<link rel="stylesheet" href="{% static 'core/css/bootstrap-datetimepicker.min.css' %}">
+	<!-- Flexslider -->
+	<link rel="stylesheet" href="{% static 'core/css/flexslider.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}">
+
+	<link rel="stylesheet" href="{% static 'core/css/style_new2.css' %}">
+
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'core/js/modernizr-2.6.2.min.js' %}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+
+	<div id="fh5co-container">
+		
+		
+		
+
+		
+
+		
+
+		
+		
+		
+		<!-- SECCION MENU -->
+		<div id="fh5co-menus" data-section="menu">
+			<div class="container">
+				<div class="row text-center fh5co-heading row-padded">
+					<div class="col-md-8 col-md-offset-2">
+						<h2 class="heading to-animate">Menú</h2>
+						<p class="sub-heading to-animate">Deguste su vista primero para que luego su paladar lo haga también.</p>
+					</div>
+				</div>
+				<div class="row row-padded">
+					{% for categoria in categorias %}
+						<div class="col-md-8">
+							<div class="fh5co-food-menu to-animate-2">							
+								<!--<h2 style="background: url({{categoria.iconoNegro.url}}) no-repeat center center; position: relative;padding-left: 80px;  height: 64px;">{{categoria.tituloES}}</h2>-->
+								<h3 style="background: url({{categoria.iconoNegro.url}}) no-repeat center right; height: 64px;"><u>{{categoria.tituloES}}</u></h3>
+								<ul>
+									{% for plato in platos %}
+										{% ifequal plato.categoria.tituloES categoria.tituloES %}
+											<li>
+												<div class="fh5co-food-desc">										
+													<div>
+														<h3>{{plato.nombreES}}</h3>
+														<p>{{plato.descripcionES}}</p>
+													</div>
+												</div>
+												<div class="fh5co-food-pricing">
+													${{plato.precio}}
+												</div>
+											</li>
+										{% endifequal %}
+									{% endfor %}								
+								</ul>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4 text-center to-animate-2">
+						<p><a href="{% url 'home' %}" class="btn btn-primary btn-outline">Página Principal</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN DE LA SECCION MENU -->
+	</div>
+	
+	<!-- jQuery -->
+	<script src="{% static 'core/js/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'core/js/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+	<!-- Bootstrap DateTimePicker -->
+	<script src="{% static 'core/js/moment.js' %}"></script>
+	<script src="{% static 'core/js/bootstrap-datetimepicker.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'core/js/jquery.waypoints.min.js' %}"></script>
+	<!-- Stellar Parallax -->
+	<script src="{% static 'core/js/jquery.stellar.min.js' %}"></script>
+
+	<!-- Flexslider -->
+	<script src="{% static 'core/js/jquery.flexslider-min.js' %}"></script>
+	<script>
+		$(function () {
+	       $('#date').datetimepicker();
+	   });
+	</script>
+	<!-- Main JS -->
+	<script src="{% static 'core/js/main.js' %}"></script>
+
+	</body>
+</html>
+
