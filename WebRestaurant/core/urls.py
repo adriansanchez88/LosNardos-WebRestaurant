@@ -3,5 +3,5 @@ from .views import HomePageView, MenuPageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name="home"),
-    path('/menu', MenuPageView.as_view(), name="menu"),
+    path('menu/', MenuPageView.as_view(), name="menu"),
 ]
