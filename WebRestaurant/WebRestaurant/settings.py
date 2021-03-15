@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
-    'events',
+    'events.apps.EventsConfig',
     'menu.apps.MenuConfig',
     'reservation',
 ]
@@ -126,3 +126,9 @@ STATIC_URL = '/static/'
 # Media Files, variables para archivos media (imagenes, etc)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'adriandjangoprojects@gmail.com'
+EMAIL_HOST_PASSWORD = 'nievares88'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
