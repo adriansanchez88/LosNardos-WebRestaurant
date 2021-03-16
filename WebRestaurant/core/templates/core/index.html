@@ -74,7 +74,7 @@
 					<div class="container">
 						<div class="row">
 							<h1 class="to-animate">Los Nardos</h1>
-							<h2 class="to-animate"><span>comida</span> cubana<span>,</span> italiana <span>y</span> española</h2>
+							<h2 class="to-animate">{% if language == 'ES' %}<span>comida</span> cubana<span>,</span> italiana <span>y</span> española{% else %}cuban<span>,</span> italian <span>and</span> spanish <span>food</span>{% endif %}</h2>
 						</div>
 					</div>
 				</div>
@@ -92,17 +92,17 @@
 			<div class="fh5co-main-nav">
 				<div class="container-fluid">
 					<div class="fh5co-menu-1">
-						<a href="#" data-nav-section="home">Inicio</a>
-						<a href="#" data-nav-section="about">Acerca de</a>
-						<a href="#" data-nav-section="features">Sugerencias del Cheff</a>
+						<a href="#" data-nav-section="home">{% if language == 'ES' %}Inicio{% else %}Home{% endif %}</a>
+						<a href="#" data-nav-section="about">{% if language == 'ES' %}Acerca de{% else %}About{% endif %}</a>
+						<a href="#" data-nav-section="features">{% if language == 'ES' %}Sugerencias del Cheff{% else %}Cheff's Suggestions{% endif %}</a>
 					</div>
 					<div class="fh5co-logo">
 						<a href="#" data-nav-section="home">Los Nardos</a>
 					</div>
 					<div class="fh5co-menu-2">
-						<a href="#" data-nav-section="menu">Menú</a>
-						<a href="#" data-nav-section="events">Eventos</a>
-						<a href="#" data-nav-section="reservation">Reservaciones</a>						
+						<a href="#" data-nav-section="menu">{% if language == 'ES' %}Menú{% else %}Menu{% endif %}</a>
+						<!--<a href="#" data-nav-section="events">{% if language == 'ES' %}Eventos{% else %}Events{% endif %}</a>-->
+						<!--<a href="#" data-nav-section="reservation">{% if language == 'ES' %}Reservaciones{% else %}Reservation{% endif %}</a>	-->					
 					</div>
 				</div>
 				
@@ -112,8 +112,23 @@
 		<div id="fh5co-about" data-section="about">
 			<div class="fh5co-2col fh5co-bg to-animate-2" style="background-image: url({% static 'core/images/los_nardos_flor1.jpg' %})"></div>
 			<div class="fh5co-2col fh5co-text">
+			{% if language == 'ES' %}
 				<h2 class="heading to-animate">Acerca de</h2>
-				<p class="to-animate"><span class="firstcharacter">R</span>estaurante insigne de la Sociedad de Recreo y Sport "Juventud Asturiana", llevamos más de 20 años brindando un servicio de excelencia y calidad. No se pierda una oportunidad única de degustar distintos platos de la magnífica cocina cubana, italiana y española. Este será el lugar donde usted y su familia podrán pasar un rato ameno y disfrutar de un excelente servicio.</p>				
+				<p class="to-animate">				
+				<span class="firstcharacter">R</span>estaurante insigne de la Sociedad de Recreo y Sport "Juventud Asturiana", 
+				llevamos más de 20 años brindando un servicio de excelencia y calidad. No se pierda una oportunidad única de 
+				degustar distintos platos de la magnífica cocina cubana, italiana y española. 
+				Este será el lugar donde usted y su familia podrán pasar un rato ameno y disfrutar de un excelente servicio.			
+				</p>
+			{% else %}
+				<h2 class="heading to-animate">About</h2>
+				<p class="to-animate">				
+				<span class="firstcharacter">F</span>amous restaurant of the Recreation and Sport Society "Juventud Asturiana",
+				we have been providing a service of excellence and quality for more than 20 years. Don't miss out on a unique opportunity to
+				taste different dishes of the magnificent Cuban, Italian and Spanish cuisine.
+				This will be the place where you and your family can have a good time and enjoy excellent service.			
+				</p>
+			{% endif %}			
 			</div>
 		</div>
 
@@ -127,7 +142,7 @@
 							{% for cita in citas %}
 								<li><!-- CADA FRASE -->
 									<blockquote>
-										<p>&ldquo;{{cita.fraseES}}&rdquo;</p>
+										<p>&ldquo;{% if language == 'ES' %}{{cita.fraseES}}{% else %}{{cita.fraseEN}}{% endif %}&rdquo;</p>
 										<p class="quote-author">&mdash; {{cita.autor}}</p>
 									</blockquote>
 								</li>
@@ -144,11 +159,23 @@
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2"><!-- SECCION DE SUGERENCIAS -->
-						<h2 class="heading to-animate">Sugerencias del Cheff</h2>
+						<h2 class="heading to-animate">{% if language == 'ES' %}Sugerencias del Cheff{% else %}Cheff's Suggestions{% endif %}</h2>
 						{% if sugerencias %}
-							<p class="sub-heading to-animate">En el día de hoy nuestro Cheff le sugiere los siguientes platos para su disfrute y el de su paladar.</p>
+							<p class="sub-heading to-animate">
+							{% if language == 'ES' %}
+								En el día de hoy nuestro Cheff le sugiere los siguientes platos para su disfrute y el de su paladar.
+							{% else %}
+								Today our Cheff suggests the following dishes for your enjoyment and that of your palate.
+							{% endif %}
+							</p>
 						{% else %}
-							<p class="sub-heading to-animate">Lo sentimos por el momento no hay sugerencias de la casa.</p>
+							<p class="sub-heading to-animate">
+							{% if language == 'ES' %}
+								Lo sentimos por el momento no hay sugerencias de la casa.
+							{% else %}
+								Sorry at the moment there are no suggestions from the house.
+							{% endif %}							
+							</p>
 						{% endif %}
 					</div>
 				</div>
@@ -161,9 +188,9 @@
 									<div class="fh5co-h-row-2 to-animate-2">
 										<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url({% if plato.imagen %} {{plato.imagen.url}}{% else %}{% static 'core/images/sugerencia-default.jpg' %}{% endif %})"></div>
 										<div class="fh5co-v-col-2 fh5co-text arrow-left">
-											<h2>{{plato.nombreES}}</h2>
+											<h2>{% if language == 'ES' %}{{plato.nombreES}}{% else %}{{plato.nombreEN}}{% endif %}</h2>
 											<span class="pricing">${{plato.precio}}</span>
-											<p>{{plato.descripcionES}}</p>
+											<p>{% if language == 'ES' %}{{plato.descripcionES}}{% else %}{{plato.descripcionEN}}{% endif %}</p>
 										</div>
 									</div>
 								</div>
@@ -184,8 +211,8 @@
 					{% for categoria in categorias_cuatro %}
 						<div class="col-md-3 to-animate" >
 							<div class="fh5co-type" >
-								<h3 style="background: url({{categoria.iconoBlanco.url}}) no-repeat center center;">{{categoria.tituloES}}</h3>
-								<p>{{categoria.descripcionES}}</p>
+								<h3 style="background: url({{categoria.iconoBlanco.url}}) no-repeat center center;">{% if language == 'ES' %}{{categoria.tituloES}}{% else %}{{categoria.tituloEN}}{% endif %}</h3>
+								<p>{% if language == 'ES' %}{{categoria.descripcionES}}{% else %}{{categoria.descripcionEN}}{% endif %}</p>
 							</div>
 						</div>
 					{% endfor %}					
@@ -198,8 +225,13 @@
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
+					{% if language == 'ES' %}
 						<h2 class="heading to-animate">Menú</h2>
 						<p class="sub-heading to-animate">Deguste su vista primero para que luego su paladar lo haga también.</p>
+					{% else %}
+						<h2 class="heading to-animate">Menu</h2>
+						<p class="sub-heading to-animate">Taste your sight first so your taste buds do too.</p>
+					{% endif %}						
 					</div>
 				</div>
 				<div class="row row-padded">
@@ -207,15 +239,15 @@
 						<div class="col-md-8">
 							<div class="fh5co-food-menu to-animate-2">							
 								<!--<h2 style="background: url({{categoria.iconoNegro.url}}) no-repeat center center; position: relative;padding-left: 80px;  height: 64px;">{{categoria.tituloES}}</h2>-->
-								<h3 style="background: url({{categoria.iconoNegro.url}}) no-repeat center right; height: 64px;"><u>{{categoria.tituloES}}</u></h3>
+								<h3 style="background: url({{categoria.iconoNegro.url}}) no-repeat center right; height: 64px;"><u>{% if language == 'ES' %}{{categoria.tituloES}}{% else %}{{categoria.tituloEN}}{% endif %}</u></h3>
 								<ul>
 									{% for plato in platos %}
 										{% ifequal plato.categoria.tituloES categoria.tituloES %}
 											<li>
 												<div class="fh5co-food-desc">										
 													<div>
-														<h3>{{plato.nombreES}}</h3>
-														<p>{{plato.descripcionES}}</p>
+														<h3>{% if language == 'ES' %}{{plato.nombreES}}{% else %}{{plato.nombreEN}}{% endif %}</h3>
+														<p>{% if language == 'ES' %}{{plato.descripcionES}}{% else %}{{plato.descripcionEN}}{% endif %}</p>
 													</div>
 												</div>
 												<div class="fh5co-food-pricing">
@@ -231,69 +263,84 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 text-center to-animate-2">
-						<p><a href="{% url 'menu' %}" class="btn btn-primary btn-outline">Menú Completo</a></p>
+						<p><a href="{% url 'menu' %}" class="btn btn-primary btn-outline" target="_blank">{% if language == 'ES' %}Menú Completo{% else %}Complete Menu{% endif %}</a></p>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- FIN DE LA SECCION MENU -->
-		<!-- SECCION DE EVENTOS -->
+		<!-- SECCION DE EVENTOS 
 		<div id="fh5co-events" data-section="events" style="background-image: url({% static 'core/images/slide_2.jpg' %});" data-stellar-background-ratio="0.5">
 			<div class="fh5co-overlay"></div>
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2 to-animate">
+						{% if language == 'ES' %}
 						<h2 class="heading">Eventos</h2>
 						<p class="sub-heading">En nuestra casa celebramos los siguientes eventos, donde presentamos platos especiales y otras ofertas.</p>
+						{% else %}
+						<h2 class="heading">Events</h2>
+						<p class="sub-heading">In our house we celebrate the following events, where we present special dishes and other offers.</p>
+						{% endif %}						
 					</div>
 				</div>
 				<div class="row">
-					{% for evento in eventos %}
-						<!-- CADA EVENTO -->
+					{% for evento in eventos %}-->
+						<!-- CADA EVENTO 
 						<div class="col-md-4">
 							<div class="fh5co-event to-animate-2">
-								<h3>{{evento.nombreES}}</h3>
-								<span class="fh5co-event-meta">{{evento.fecha}}</span>
-								<p>{{evento.descripcionES}}</p>								
+								<h3>{% if language == 'ES' %}{{evento.nombreES}}{% else %}{{evento.nombreEN}}{% endif %}</h3>
+								<span class="fh5co-event-meta">{{evento.fecha|date:"d/m/Y"}}</span>
+								<p>{% if language == 'ES' %}{{evento.descripcionES}}{% else %}{{evento.descripcionEN}}{% endif %}</p>								
 							</div>
 						</div> 
 					{% endfor %}										
 				</div>
 			</div>
-		</div>
+		</div>-->
 		<!-- FIN DE LA SECCION DE EVENTOS -->
 
 		<div id="fh5co-contact" data-section="reservation">
 			<div class="container">
-				<div class="row text-center fh5co-heading row-padded">
+				<!--<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
+					{% if language == 'ES' %}
 						<h2 class="heading to-animate">Reserve su Mesa</h2>
 						<p class="sub-heading to-animate">Puede contactarnos para reservar su mesa llamando al <strong>Teléfono de Contacto</strong> o llenando el <strong>Formulario de Reservación</strong> y esperando que demos respuesta a su solicitud.</p>
+					{% else %}
+						<h2 class="heading to-animate">Reserve your Table</h2>
+						<p class="sub-heading to-animate">You can contact us to reserve your table by calling the <strong>Contact Phone</strong> or filling out the <strong>Reservation Form</strong> and waiting for us to respond to your request.</p>
+					{% endif %}						
 					</div>
-				</div>
+				</div>-->
 				<div class="row">
 					<div class="col-md-6 to-animate-2">
-						<h3>Información de Contacto</h3>
+						<h3>{% if language == 'ES' %}Información de Contacto{% else %}Contact Information{% endif %}</h3>
 						<ul class="fh5co-contact-info">
 							<li class="fh5co-contact-address ">
 								<i class="icon-home"></i>
+								{% if language == 'ES' %}
 								Sociedad de Recreo  Sport "Juventud Asturiana"<br>
 								Prado 563 e/ Teniente Rey y Dragones<br>La Habana, Cuba
+								{% else %}
+								Recreation and Sport Society "Juventud Asturiana"<br>
+								Prado 563 e/ Teniente Rey y Dragones<br>Havana, Cuba
+								{% endif %}
 							</li>							
 							<li><a href="tel:+5378632985"><i class="icon-phone"></i> +537 863 2985</a></li>
-							<li><a href="mailto:losnardoscuba@gmail.com"><i class="icon-envelope"></i>losnardoscuba@gmail.com</a></li>							
+							<!--<li><a href="mailto:losnardoscuba@gmail.com"><i class="icon-envelope"></i>losnardoscuba@gmail.com</a></li>	-->						
 						</ul>
 					</div>
-					<div class="col-md-6 to-animate-2">
-						<h3  id="registration_form">Formulario de Reservación</h3>
+					<!--<div class="col-md-6 to-animate-2">
+						<h3  id="registration_form">{% if language == 'ES' %}Formulario de Reservación{% else %}Reservation Form{% endif %}</h3>
 						{% if 'ok' in request.GET %}
                             <div class="alert alert-success" role="alert">
-                                Mensaje enviado correctamente.
+                                {% if language == 'ES' %}Mensaje enviado correctamente.{% else %}Message sent successfully.{% endif %}
                             </div>
                         {% endif %}
                         {% if 'fail' in request.GET %}
                             <div class="alert alert-danger" role="alert">
-                                Ha ocurrido un error y no se ha podido enviar el mensaje.
+                                {% if language == 'ES' %}Ha ocurrido un error y no se ha podido enviar el mensaje.{% else %}An error has occurred and the message could not be sent.{% endif %}
                             </div>            
                         {% endif %} 
 						<form action="#registration_form" method="POST" role="form" class="contactForm">
@@ -315,10 +362,10 @@
 							</div>
 							{{form.mensaje.errors}}
 							<div class="form-group ">
-								<input class="btn btn-primary btn-outline" value="Enviar Mensaje" type="submit" data-nav-section="reservation">
+								<input class="btn btn-primary btn-outline" {% if language == 'ES' %}value="Enviar Mensaje"{% else %}value="Send Message"{% endif %} type="submit" data-nav-section="reservation">
 							</div>
 						</form>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>
@@ -330,9 +377,11 @@
 		<div class="container">
 			<div class="row row-padded">
 				<div class="col-md-12 text-center">
-					<p class="to-animate">&copy; 2021 - Sociedad de Recreo y Sport "Juventud Asturiana". <br> Desarrollado por: <a href="http://adriansanchez.pythonanywhere.com/" target="_blank">Adrián Sánchez Nievares</a>
+					<p class="to-animate">&copy; 2021 - {% if language == 'ES' %}Sociedad de Recreo y Sport "Juventud Asturiana".{% else %}Recreation and Sport Society "Juventud Asturiana".{% endif %} 
+					<br> 
+					{% if language == 'ES' %}Desarrollado por:{% else %}Developed by:{% endif %} <a href="http://adriansanchez.pythonanywhere.com/" target="_blank">Adrián Sánchez Nievares</a>
 					</p>
-					<p class="text-center to-animate"><a href="#" data-nav-section="home" class="js-gotop">Ir al Inicio</a></p>
+					<p class="text-center to-animate"><a href="#" data-nav-section="home" class="js-gotop">{% if language == 'ES' %}Ir al Inicio{% else %}Go Home{% endif %}</a></p>
 				</div>
 			</div>
 			<!-- SECCION REDES SOCIALES 

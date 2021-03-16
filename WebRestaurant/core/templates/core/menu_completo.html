@@ -69,8 +69,13 @@
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
-						<h2 class="heading to-animate">Menú</h2>
-						<p class="sub-heading to-animate">Deguste su vista primero para que luego su paladar lo haga también.</p>
+						{% if language == 'ES' %}
+							<h2 class="heading to-animate">Menú</h2>
+							<p class="sub-heading to-animate">Deguste su vista primero para que luego su paladar lo haga también.</p>
+						{% else %}
+							<h2 class="heading to-animate">Menu</h2>
+							<p class="sub-heading to-animate">Taste your sight first so your taste buds do too.</p>
+						{% endif %}
 					</div>
 				</div>
 				<div class="row row-padded">
@@ -78,15 +83,15 @@
 						<div class="col-md-8">
 							<div class="fh5co-food-menu to-animate-2">							
 								<!--<h2 style="background: url({{categoria.iconoNegro.url}}) no-repeat center center; position: relative;padding-left: 80px;  height: 64px;">{{categoria.tituloES}}</h2>-->
-								<h3 style="background: url({{categoria.iconoNegro.url}}) no-repeat center right; height: 64px;"><u>{{categoria.tituloES}}</u></h3>
+								<h3 style="background: url({{categoria.iconoNegro.url}}) no-repeat center right; height: 64px;"><u>{% if language == 'ES' %}{{categoria.tituloES}}{% else %}{{categoria.tituloEN}}{% endif %}</u></h3>
 								<ul>
 									{% for plato in platos %}
 										{% ifequal plato.categoria.tituloES categoria.tituloES %}
 											<li>
 												<div class="fh5co-food-desc">										
 													<div>
-														<h3>{{plato.nombreES}}</h3>
-														<p>{{plato.descripcionES}}</p>
+														<h3>{% if language == 'ES' %}{{plato.nombreES}}{% else %}{{plato.nombreEN}}{% endif %}</h3>
+														<p>{% if language == 'ES' %}{{plato.descripcionES}}{% else %}{{plato.descripcionEN}}{% endif %}</p>
 													</div>
 												</div>
 												<div class="fh5co-food-pricing">
@@ -100,11 +105,11 @@
 						</div>
 					{% endfor %}
 				</div>
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-md-4 col-md-offset-4 text-center to-animate-2">
-						<p><a href="{% url 'home' %}" class="btn btn-primary btn-outline">Página Principal</a></p>
+						<p><a href="{% static 'media/Los_Nardos-Menu.pdf' }" class="btn btn-primary btn-outline" download="Los_Nardos_Menu">Descargar</a></p>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 		<!-- FIN DE LA SECCION MENU -->

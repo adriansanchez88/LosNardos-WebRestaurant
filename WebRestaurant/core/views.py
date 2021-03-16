@@ -34,7 +34,16 @@ def home(request):
             if len(categorias_cuatro)==4:
                 break
 
-    platos = Plato.objects.all()
+    listado = list(Plato.objects.all())
+    platos = []
+    for categoria in categorias_menu:
+        cont = 0
+        for elem in listado:
+            if elem.categoria.tituloES == categoria.tituloES:
+                platos.append(elem)
+                cont+=1
+                if cont>=3:
+                    break
 
     eventos = Evento.objects.all()
 
@@ -59,6 +68,7 @@ def home(request):
                 return redirect(reverse('home')+'?ok')                    
             except:
                 return redirect(reverse('home')+'?fail')
+
     return render(request, "core/index.html", {
             'citas': citas,
             'sugerencias': sugerencias,
@@ -66,7 +76,8 @@ def home(request):
             'categorias_cuatro': categorias_cuatro,
             'platos': platos,
             'eventos': eventos,
-            'form' : form
+            'form' : form,
+            'language': 'ES'
     })
 
         
@@ -87,5 +98,6 @@ class MenuPageView(TemplateView):
         return render(request, self.template_name, {
             
             'categorias': categorias_menu,            
-            'platos': platos
+            'platos': platos,
+            'language': 'ES'
     })
